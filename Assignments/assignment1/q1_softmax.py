@@ -70,16 +70,14 @@ def test_softmax():
     """
     print("Running your tests...")
     ### YOUR CODE HERE
-    # test4 = softmax(np.array([[1,2,3,6],
-    #             [2,4,5,6],
-    #             [3,8,7,6]]))
-    # print(test4)
-    # ans4 = np.array([[ 0.09003057,  0.00242826,  0.01587624,  0.33333333],
-    #    [ 0.24472847,  0.01794253,  0.11731043,  0.33333333],
-    #    [ 0.66524096,  0.97962921,  0.86681333,  0.33333333]])
-    # assert np.allclose(test4, ans4, rtol=1e-05, atol=1e-06)
+    test4 = softmax(np.array([[100, 100, 100],
+                             [100, 100, 100]]))
+    print(test4)
+    ans4 = np.array([[0.33333, 0.33333, 0.33333],
+                    [0.33333, 0.33333, 0.33333]])
+    assert np.allclose(test4, ans4, rtol=1e-05, atol=1e-06)
 
-    # print("All tests passed!\n")
+    print("All tests passed!\n")
     ### END YOUR CODE
 
 
