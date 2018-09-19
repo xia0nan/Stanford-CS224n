@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/Users/nan/.local/share/virtualenvs/assignment1-WzmfY6DD/bin/python"
+    "python.pythonPath": "/Users/nan/.local/share/virtualenvs/assignment1-WzmfY6DD/bin/python",
+    "python.unitTest.pyTestArgs": [
+        "."
+    ],
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true
 }
