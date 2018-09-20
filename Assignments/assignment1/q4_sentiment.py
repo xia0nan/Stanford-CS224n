@@ -49,7 +49,8 @@ def getSentenceFeatures(tokens, wordVectors, sentence):
     sentVector = np.zeros((wordVectors.shape[1],))
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    sentVector = [sentVector + wordVectors[tokens[x],:] for x in sentence]
+    sentVector /= len(sentVector)
     ### END YOUR CODE
 
     assert sentVector.shape == (wordVectors.shape[1],)
@@ -63,7 +64,10 @@ def getRegularizationValues():
     """
     values = None   # Assign a list of floats in the block below
     ### YOUR CODE HERE
-    raise NotImplementedError
+    values = [np.power(10.0, p) for p in np.arange(-4, 4)]
+    # Result: [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+    # np.logspace(-4, 4, num=9, base=10)
+    # Result: array([1.e-04, 1.e-03, 1.e-02, 1.e-01, 1.e+00, 1.e+01, 1.e+02, 1.e+03, 1.e+04])
     ### END YOUR CODE
     return sorted(values)
 
@@ -89,7 +93,7 @@ def chooseBestModel(results):
     bestResult = None
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    bestResult = max(results, key=lambda x: x["dev"])
     ### END YOUR CODE
 
     return bestResult
@@ -139,7 +143,7 @@ def outputPredictions(dataset, features, labels, clf, filename):
     pred = clf.predict(features)
     with open(filename, "w") as f:
         print("True\tPredicted\tText", file=f)
-        for i in xrange(len(dataset)):
+        for i in range(len(dataset)):
             print("%d\t%d\t%s" % (
                 labels[i], pred[i], " ".join(dataset[i][0])), file=f)
 
@@ -166,7 +170,7 @@ def main(args):
     nTrain = len(trainset)
     trainFeatures = np.zeros((nTrain, dimVectors))
     trainLabels = np.zeros((nTrain,), dtype=np.int32)
-    for i in xrange(nTrain):
+    for i in range(nTrain):
         words, trainLabels[i] = trainset[i]
         trainFeatures[i, :] = getSentenceFeatures(tokens, wordVectors, words)
 
@@ -175,7 +179,7 @@ def main(args):
     nDev = len(devset)
     devFeatures = np.zeros((nDev, dimVectors))
     devLabels = np.zeros((nDev,), dtype=np.int32)
-    for i in xrange(nDev):
+    for i in range(nDev):
         words, devLabels[i] = devset[i]
         devFeatures[i, :] = getSentenceFeatures(tokens, wordVectors, words)
 
@@ -184,7 +188,7 @@ def main(args):
     nTest = len(testset)
     testFeatures = np.zeros((nTest, dimVectors))
     testLabels = np.zeros((nTest,), dtype=np.int32)
-    for i in xrange(nTest):
+    for i in range(nTest):
         words, testLabels[i] = testset[i]
         testFeatures[i, :] = getSentenceFeatures(tokens, wordVectors, words)
 
