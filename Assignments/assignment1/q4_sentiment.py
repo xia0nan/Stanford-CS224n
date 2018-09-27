@@ -158,6 +158,8 @@ def main(args):
 
     if args.yourvectors:
         _, wordVectors, _ = load_saved_params()
+        print(wordVectors)
+        print(nWords)
         wordVectors = np.concatenate(
             (wordVectors[:nWords,:], wordVectors[nWords:,:]),
             axis=1)
